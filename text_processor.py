@@ -4,7 +4,8 @@ from db_updater import upload_data
 
 
 def prepareForUpload(pathIn, bookID):
-	dbData = sysHandle.getWordFromTextFile(pathIn)
+	#print(pathIn)
+	dbData = sysHandle.getListFromTextFile(pathIn)
 	upload_data(bookID, dbData)
 	#print(dbData)
 	

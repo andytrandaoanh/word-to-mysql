@@ -27,11 +27,11 @@ def getRawPath(pathIn, dirOut):
 
 
 
-def getWordFromTextFile(filepath):
+def getListFromTextFile(filepath):
     try:
         ofile = open(filepath, 'r', encoding = 'utf-8') 
         data = ofile.read()
-        words = data.split()
+        words = data.split('\n')
         return words
 
     except FileNotFoundError:
