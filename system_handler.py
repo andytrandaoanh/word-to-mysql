@@ -81,3 +81,6 @@ def loadDictionaries(dirDic):
 	dicData = list(dict.fromkeys(bigDic))
 	dicData.sort()
 	return dicData
+
+
+

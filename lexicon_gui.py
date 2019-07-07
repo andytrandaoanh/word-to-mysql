@@ -32,12 +32,12 @@ class LexGUI:
         self.tabControl = ttk.Notebook(self.master)
         
         self.tab1 = ttk.Frame(self.tabControl)
-        #self.tab2 = ttk.Frame(self.tabControl)
+        self.tab2 = ttk.Frame(self.tabControl)
         #self.tab3 = ttk.Frame(self.tabControl)
         #self.tab4 = ttk.Frame(self.tabControl)
 
-        self.tabControl.add(self.tab1, text = 'Upload To MySQL')
-        #self.tabControl.add(self.tab2, text = 'Recycle')      
+        self.tabControl.add(self.tab1, text = 'Words to MySQL')
+        self.tabControl.add(self.tab2, text = 'Stop Words')      
         #self.tabControl.add(self.tab3, text = 'Settings')
         #self.tabControl.add(self.tab4, text = 'Upload')
 
@@ -125,11 +125,54 @@ class LexGUI:
         self.button7 = ttk.Button(self.labelFrame, text = "Start Upload", command=self.uploadData)
         self.button7.grid(column = 0, row = 5)
 
-  
+    def fileDialog2(self):
+        self.filename = filedialog.askopenfilename(initialdir = "E:/FULLTEXT/SPECIALTY", 
+            title = "Select a file", 
+            filetypes = (("Text files", "*.txt"), ("all files", "*.*")))
+        if (self.filename):
+            self.filepath.set(self.filename) 
+            
+            cf = config_handler.ConfigHandler()
+            cf.set_config_value(cf.RECENT_OPEN_FILE_2,self.filename)
 
+    def uploadData2(self):
+        if(self.filepath21.get()):
+            text_processor.uploadSpecialWords(self.filepath21.get())
+        else:
+            messagebox.showwarning("Error", "Missing input file")
+  
+    def createTab2(self):
+        #frame
         
+        self.labelFrame2 = ttk.LabelFrame(self.tab2, text= 'Select a stop-word data file:')
+        self.labelFrame2.grid(column=0, row=0, padx = 20, pady = 20)
+
+        #textbox 21
+        self.filepath21 = tk.StringVar()
+        #load config value
+        cf = config_handler.ConfigHandler()
+        value = cf.get_config_value(cf.RECENT_OPEN_FILE_2)
+        self.filepath21.set(value) 
+        self.path21 = ttk.Entry(self.labelFrame2, width=90, textvariable = self.filepath21)
+        self.path21.grid(column = 0, row =1, sticky = "w")
+        
+   
+
+        #button 21
+        self.button21 = ttk.Button(self.labelFrame2, text = "Browse A File", command=self.fileDialog2)
+        self.button21.grid(column = 1, row = 1, sticky = "w")
+
+         #label 21
+        self.label21 = ttk.Label(self.labelFrame2, text="Click button to start processing text:")
+        self.label21.grid(column = 0, row = 4, sticky = "w")
+        #button no 22
+        self.button22 = ttk.Button(self.labelFrame2, text = "Start Upload", command=self.uploadData2)
+        self.button22.grid(column = 0, row = 5)
+
+
 
     def createGUI(self):
         self.createTabs()    
         self.createTab1()
+        self.createTab2()
   
