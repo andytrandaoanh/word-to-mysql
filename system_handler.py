@@ -84,3 +84,10 @@ def loadDictionaries(dirDic):
 
 
 
+
+def getBookIDFromMapFileName(inPath):
+	temp_path = inPath
+	temp_path = os.path.basename(temp_path)
+	fname, fext = os.path.splitext(temp_path)
+	dbID = int(fname[-4:])
+	return(dbID)

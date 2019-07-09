@@ -7,7 +7,7 @@ from db_updater import upload_data
 win = tk.Tk()
 
 win.title("Upload Words To MySQL")
-win.geometry("760x540") 
+win.geometry("720x340") 
 win.resizable(0, 0) 
 
 

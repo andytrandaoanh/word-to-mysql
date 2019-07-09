@@ -1,7 +1,7 @@
 import sys
 import system_handler as sysHandle
 from db_updater import upload_data
-import stop_words
+import stop_words, mappings
 
 def prepareForUpload(pathIn, bookID):
 	#print(pathIn)
@@ -21,3 +21,13 @@ def uploadSpecialWords(pathIn):
 		stop_words.upload_data(newList)
 	else:
 		print('nothing inserted, data already exists')
+	sys.exit()
+
+def uploadMappings(pathIn):
+	bookID = sysHandle.getBookIDFromMapFileName(pathIn)
+	#print('bookID:', bookID)
+	mapList = sysHandle.getListFromTextFile(pathIn)
+	mappings.upload_data(bookID, mapList)
+	sys.exit()	
+
+	

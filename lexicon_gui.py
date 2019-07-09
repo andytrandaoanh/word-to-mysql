@@ -33,12 +33,12 @@ class LexGUI:
         
         self.tab1 = ttk.Frame(self.tabControl)
         self.tab2 = ttk.Frame(self.tabControl)
-        #self.tab3 = ttk.Frame(self.tabControl)
+        self.tab3 = ttk.Frame(self.tabControl)
         #self.tab4 = ttk.Frame(self.tabControl)
 
         self.tabControl.add(self.tab1, text = 'Words to MySQL')
         self.tabControl.add(self.tab2, text = 'Stop Words')      
-        #self.tabControl.add(self.tab3, text = 'Settings')
+        self.tabControl.add(self.tab3, text = 'Mappings')
         #self.tabControl.add(self.tab4, text = 'Upload')
 
 
@@ -126,14 +126,14 @@ class LexGUI:
         self.button7.grid(column = 0, row = 5)
 
     def fileDialog2(self):
-        self.filename = filedialog.askopenfilename(initialdir = "E:/FULLTEXT/SPECIALTY", 
+        self.filename21 = filedialog.askopenfilename(initialdir = "E:/FULLTEXT/SPECIALTY", 
             title = "Select a file", 
             filetypes = (("Text files", "*.txt"), ("all files", "*.*")))
-        if (self.filename):
-            self.filepath.set(self.filename) 
+        if (self.filename21):
+            self.filepath21.set(self.filename21) 
             
             cf = config_handler.ConfigHandler()
-            cf.set_config_value(cf.RECENT_OPEN_FILE_2,self.filename)
+            cf.set_config_value(cf.RECENT_OPEN_FILE_2,self.filename21)
 
     def uploadData2(self):
         if(self.filepath21.get()):
@@ -169,10 +169,56 @@ class LexGUI:
         self.button22 = ttk.Button(self.labelFrame2, text = "Start Upload", command=self.uploadData2)
         self.button22.grid(column = 0, row = 5)
 
+    def fileDialog31(self):
+        self.filename31 = filedialog.askopenfilename(initialdir = "E:/FULLTEXT/CLEANMAP", 
+            title = "Select a file", 
+            filetypes = (("Text files", "*.txt"), ("all files", "*.*")))
+        if (self.filename31):
+            self.filepath31.set(self.filename31) 
+            
+            cf = config_handler.ConfigHandler()
+            cf.set_config_value(cf.RECENT_OPEN_FILE_3,self.filename31)
+
+    def uploadData31(self):
+        if(self.filepath31.get()):
+            text_processor.uploadMappings(self.filepath31.get())
+        else:
+            messagebox.showwarning("Error", "Missing input file")
+  
+    def createTab3(self):
+        #frame
+        
+        self.labelFrame3 = ttk.LabelFrame(self.tab3, text= 'Select a mapping data file:')
+        self.labelFrame3.grid(column=0, row=0, padx = 20, pady = 20)
+
+        #textbox 31
+        self.filepath31 = tk.StringVar()
+        #load config value
+        cf = config_handler.ConfigHandler()
+        value = cf.get_config_value(cf.RECENT_OPEN_FILE_3)
+        self.filepath31.set(value) 
+        self.path31 = ttk.Entry(self.labelFrame3, width=90, textvariable = self.filepath31)
+        self.path31.grid(column = 0, row =1, sticky = "w")
+        
+   
+
+        #button 31
+        self.button31 = ttk.Button(self.labelFrame3, text = "Browse A File", command=self.fileDialog31)
+        self.button31.grid(column = 1, row = 1, sticky = "w")
+
+         #label 31
+        self.label31 = ttk.Label(self.labelFrame3, text="Click button to start processing text:")
+        self.label31.grid(column = 0, row = 4, sticky = "w")
+        #button no 32
+        self.button32 = ttk.Button(self.labelFrame3, text = "Start Upload", command=self.uploadData31)
+        self.button32.grid(column = 0, row = 5)
+
+
 
 
     def createGUI(self):
         self.createTabs()    
         self.createTab1()
         self.createTab2()
+        self.createTab3()
   

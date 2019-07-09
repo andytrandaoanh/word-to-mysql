@@ -12,7 +12,7 @@ class ConfigHandler:
     RECENT_OUTPUT_DIR = 'RecentOutputDirectory'
     RECENT_BOOK_ID = 'RecentBookID'
     RECENT_OPEN_FILE_2 = 'RecentOpenFilePath2'
-    
+    RECENT_OPEN_FILE_3 = 'RecentOpenFilePath3'
     
     RECENT_DATA = {}
 
@@ -24,6 +24,7 @@ class ConfigHandler:
         self.RECENT_DATA[self.RECENT_OUTPUT_DIR] = os.getcwd()
         self.RECENT_DATA[self.RECENT_BOOK_ID] = 1
         self.RECENT_DATA[self.RECENT_OPEN_FILE_2] = os.path.join(os.getcwd(), self.CONFIG_FILE)
+        self.RECENT_DATA[self.RECENT_OPEN_FILE_3] = os.path.join(os.getcwd(), self.CONFIG_FILE)
 
 
     def read_config(self):
