@@ -46,7 +46,7 @@ class LexGUI:
         self.tabControl.pack(expand = 1, fill = "both")
 
     def fileDialog(self):
-        self.filename = filedialog.askopenfilename(initialdir = "E:/FULLTEXT/DATABASE", 
+        self.filename = filedialog.askopenfilename(initialdir = "E:/FULLTEXT/WORD/DATABASE", 
             title = "Select a file", 
             filetypes = (("Text files", "*.txt"), ("all files", "*.*")))
         if (self.filename):
@@ -126,7 +126,7 @@ class LexGUI:
         self.button7.grid(column = 0, row = 5)
 
     def fileDialog2(self):
-        self.filename21 = filedialog.askopenfilename(initialdir = "E:/FULLTEXT/SPECIALTY", 
+        self.filename21 = filedialog.askopenfilename(initialdir = "E:/FULLTEXT/DICTIONARY/SPECIALTY", 
             title = "Select a file", 
             filetypes = (("Text files", "*.txt"), ("all files", "*.*")))
         if (self.filename21):
