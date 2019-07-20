@@ -1,7 +1,7 @@
 import sys
 import system_handler as sysHandle
 from db_updater import upload_data
-import stop_words, mappings
+import stop_words, mappings, word_pairs
 
 def prepareForUpload(pathIn, bookID):
 	#print(pathIn)
@@ -30,4 +30,7 @@ def uploadMappings(pathIn):
 	mappings.upload_data(bookID, mapList)
 	sys.exit()	
 
-	
+def uploadWordPairs(pathIn):
+	wordPairList = sysHandle.getListFromTextFile(pathIn)
+	word_pairs.write_word_pairs(wordPairList)
+	#print('pathIn', pathIn)	
