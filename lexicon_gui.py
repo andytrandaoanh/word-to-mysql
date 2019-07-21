@@ -170,7 +170,7 @@ class LexGUI:
         self.button22.grid(column = 0, row = 5)
 
     def fileDialog31(self):
-        self.filename31 = filedialog.askopenfilename(initialdir = "E:/FULLTEXT/CLEANMAP", 
+        self.filename31 = filedialog.askopenfilename(initialdir = "E:/FULLTEXT/MAP/CLEANMAP", 
             title = "Select a file", 
             filetypes = (("Text files", "*.txt"), ("all files", "*.*")))
         if (self.filename31):
